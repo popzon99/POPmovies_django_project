@@ -1,0 +1,181 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>POPZCORN.COM</title>
+
+    
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    
+
+  </head>
+  <body>
+
+          
+      
+
+        
+    <header id="header" class="fixed-top">
+      <div class="d-flex align-items-center">
+        <h1 class="logo me-auto"><a href="{% url 'list_movies' %}"></a>Popzcorn</h1>
+
+            <nav id="navbar" class="navbar order-last order-lg-0">
+              <ul>
+              <li><a class="active" href="{% url 'list_movies' %}">Home</a></li>
+              <li><a href="{% url 'about' %}">About</a></li>
+              
+              
+              <li><a href="{% url 'all_movies' %}">Popular Movies</a></li>
+              <li><a href="{% url 'create_movies' %}">Add a new Movie</a></li>
+              
+              
+            
+              <li><a href="{% url 'contact' %}">Contact</a></li>
+              {% if user.is_authenticated %}
+                 <li><a href="{% url 'logout' %}">Logout</a></li>
+             {% else %}
+                 <li><a href="{% url 'login' %}">Login</a></li>
+                  <li><a href="{% url 'signup' %}">Signup</a></li>
+             {% endif %}
+                 
+                 <li><a  class="active"  href="{% url 'list_movies' %}"> Welcome {{user.username}}</a></li>
+              
+              
+              </ul>
+              <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav>
+    </div>
+    
+  </header>
+
+
+                  <section id="hero" class="d-flex justify-content-center align-items-center">
+                    <div class=" position-relative" data-aos="zoom-in" data-aos-delay="100">
+                      <h1>Get ready , <br>indulge in a cinematic feast with Popzcorn</h1>
+                      <h2>"the perfect pairing for your movie experience!"</h2>
+                      <a href="{% url 'contact' %}" class="btn-get-started">Contact Us</a>
+                      
+                    </div>
+                  </section><!-- End Hero -->
+
+
+          
+
+            
+              <div class="list" >
+
+                        
+                    <div class= "list-movies">
+                        <h2>List of Movies</h2>
+                        <ul>
+                          {% for movie in movies %}
+                                <li><a class="btn mb-3" href="{% url 'view_movies' pk=movie.pk %}">{{ movie.name }}</a></li>
+                            {% empty %}
+                                <li/>
+            
+                          {% endfor %}
+            
+                        </ul>
+                        <a  class="btn" href="{% url 'create_movies' %}">Add a new Movie</a>
+                   </div>
+
+
+
+
+              </div>
+            
+
+      
+
+       <div>
+
+        <h1 class="text-center">Our Collection</h1>
+       </div>
+
+
+
+       
+
+       {% for movie in movies %}
+              
+
+       <div class="container">
+           
+               
+        <div class="row mt-5 ">
+            
+            
+
+            <div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4 mt-md-5 mx-auto ">
+
+                <div class="course-item ">
+                    
+                    <div class="course-content">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h2>{{ movie.name }}</h2>
+                        <p class="price "><strong>Runtime:</strong>{{ movie.runtime }}</p>
+                    </div>
+    
+                    <p><strong>Genre:</strong>{{ movie.genre }}</p>
+                    <p><strong>Year:</strong> {{ movie.year }}</p>
+                    <p><strong>Language:</strong> {{ movie.language }}</p>
+                    <p><strong>Description:</strong>{{ movie.description }}</p>
+                    
+                        
+
+                      
+                    
+                        
+                        <div>
+                            <a class="btn btn-dark" href="{% url 'update_movies' pk=movie.pk %}">Edit</a>
+                            <a class="btn btn-dark" href="{% url 'delete_movies' pk=movie.pk %}">Delete</a>
+                            <a class="btn btn-dark" href="{% url 'list_movies' %}">Back to list</a>
+                            </p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+              <div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4 mt-md-5 mx-auto ">
+
+                  <img src="{{ movie.posterimage.url }}" alt="{{ movie.name }}" class="img-fluid mr-0" alt="...">
+
+
+              </div>
+
+            
+                
+        </div>
+    
+</div>
+</div>
+   
+
+{% endfor %}
+
+
+
+
+
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="{% static 'js/popper.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+
+  </body>
+</html>
+     
+
+  
+
+
+
+
+  
+
+
+

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <script
+    src="https://kit.fontawesome.com/64d58efce2.js"
+    crossorigin="anonymous"
+  ></script>
+</head>
+<body>
+  <header id="header" class="fixed-top">
+    <div class="d-flex align-items-center">
+      <h1 class="logo me-auto"><a href="{% url 'list_movies' %}"></a>POPZCORN</h1>
+
+          <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+            <li><a class="active" href="{% url 'list_movies' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            
+            
+            <li><a href="{% url 'all_movies' %}">Popular Movies</a></li>
+            <li><a href="{% url 'create_movies' %}">Add a new Movie</a></li>
+            
+            
+          
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+            {% if user.is_authenticated %}
+               <li><a href="{% url 'logout' %}">Logout</a></li>
+           {% else %}
+               <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Signup</a></li>
+           {% endif %}
+               
+               <li><a  class="active"  href="{% url 'list_movies' %}"> Welcome {{user.username}}</a></li>
+            
+            
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+  </div>
+  
+</header>
+  <div class="container">
+    
+    <span class="big-circle"></span>
+    <img src="img/shape.png" class="square" alt="" />
+    <div class="form">
+      <div class="contact-info">
+        <h3 class="title text-dark">Let's get in touch</h3>
+        <p class="text text-dark">
+          Feel free to contact us anytime anywhere,
+        </p>
+
+        <div class="info">
+          <div class="information">
+            <img src="{% static 'images/location.png' %} " class="icon" alt="" />
+            <p class="text-dark">Mullenkolly Wayanad</p>
+          </div>
+          <div class="information">
+            <img src="{% static 'images/email.png' %} " class="icon" alt="" />
+            <p class="text-dark">popsonemmanuel99@gmail.com</p>
+          </div>
+          <div class="information">
+            <img src="{% static 'images/phone.png' %} " class="icon" alt="" />
+            <p class="text-dark">7010796616</p>
+          </div>
+        </div>
+
+        <div class="social-media">
+          <p class="text-dark">Connect with us :</p>
+          <div class="social-icons">
+            <a href="#">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <span class="circle one"></span>
+        <span class="circle two"></span>
+
+        <form action=" "  method="POST">
+            {% csrf_token %}
+          <h3 class="title">Contact us</h3>
+          <div class="input-container">
+            <input type="text" name="name" class="input" id="name"/>
+            <label for="name">Username</label> 
+            <span>Username</span>
+          </div>
+          <div class="input-container">
+            <input type="email" name="email" class="input" id="email" />
+            <label for="email">Email</label>
+            <span>Email</span>
+          </div>
+          <div class="input-container">
+            <input type="tel" name="phone" class="input" id="phone" />
+            <label for="phone">Phone</label>
+            <span>Phone</span>
+          </div>
+          <div class="input-container textarea">
+            <textarea name="message" class="input" id="message"></textarea>
+            <label for="message">Message</label>
+            <span>Message</span>
+          </div>
+          <button type="submit" class="btn" value="Send Mail">Send</button>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <script src="{% static 'js/jquery.js' %}"></script>
+  <script src="{% static 'js/popper.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script> 
+
+  <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div>
+      <p class="mt-5">edit {{ movie.name }}</p>
+      <form class= "mt-5" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+      </form>
+  </div>
+</div>
+{% endblock %}
